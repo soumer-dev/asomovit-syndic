@@ -1,40 +1,65 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import type { Metadata } from "next";
+import Link from "next/link";
 import { Eye, Award, HeartHandshake, ShieldCheck, Scale, Briefcase, Calculator, Wrench } from "lucide-react";
 
-export const Route = createFileRoute("/a-propos")({
-  head: () => ({
-    meta: [
-      { title: "À propos – ASOMOVIT SYNDIC, syndic à Marrakech" },
-      {
-        name: "description",
-        content:
-          "Découvrez ASOMOVIT SYNDIC : société marocaine spécialisée dans la gestion de copropriétés à Marrakech. Notre mission, nos valeurs, notre équipe.",
-      },
-      { property: "og:title", content: "À propos – ASOMOVIT SYNDIC" },
-      {
-        property: "og:description",
-        content: "Notre mission : assurer une gestion efficace, sereine et conforme à la loi 18-00 / 106-12.",
-      },
-    ],
-  }),
-  component: AboutPage,
-});
+export const metadata: Metadata = {
+  title: "À propos – ASOMOVIT SYNDIC, syndic à Marrakech",
+  description:
+    "Découvrez ASOMOVIT SYNDIC : société marocaine spécialisée dans la gestion de copropriétés à Marrakech. Notre mission, nos valeurs, notre équipe.",
+  openGraph: {
+    title: "À propos – ASOMOVIT SYNDIC",
+    description:
+      "Notre mission : assurer une gestion efficace, sereine et conforme à la loi 18-00 / 106-12.",
+  },
+};
 
 const values = [
-  { icon: Eye, title: "Transparence", desc: "Une gestion claire et compréhensible pour tous les copropriétaires." },
-  { icon: Award, title: "Professionnalisme", desc: "Expertise et rigueur au quotidien dans chaque dossier." },
-  { icon: HeartHandshake, title: "Disponibilité", desc: "Une équipe à l'écoute, présente et réactive." },
-  { icon: ShieldCheck, title: "Confiance", desc: "Une relation durable avec les copropriétaires." },
-  { icon: Scale, title: "Conformité légale", desc: "Respect strict de la loi 18-00 / 106-12." },
+  {
+    icon: Eye,
+    title: "Transparence",
+    desc: "Une gestion claire et compréhensible pour tous les copropriétaires.",
+  },
+  {
+    icon: Award,
+    title: "Professionnalisme",
+    desc: "Expertise et rigueur au quotidien dans chaque dossier.",
+  },
+  {
+    icon: HeartHandshake,
+    title: "Disponibilité",
+    desc: "Une équipe à l'écoute, présente et réactive.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Confiance",
+    desc: "Une relation durable avec les copropriétaires.",
+  },
+  {
+    icon: Scale,
+    title: "Conformité légale",
+    desc: "Respect strict de la loi 18-00 / 106-12.",
+  },
 ];
 
 const team = [
-  { icon: Briefcase, role: "Gestion immobilière", desc: "Suivi administratif et relation copropriétaires." },
-  { icon: Calculator, role: "Comptabilité", desc: "Comptes, budgets, appels de fonds et reporting." },
-  { icon: Wrench, role: "Suivi technique", desc: "Travaux, prestataires et entretien des parties communes." },
+  {
+    icon: Briefcase,
+    role: "Gestion immobilière",
+    desc: "Suivi administratif et relation copropriétaires.",
+  },
+  {
+    icon: Calculator,
+    role: "Comptabilité",
+    desc: "Comptes, budgets, appels de fonds et reporting.",
+  },
+  {
+    icon: Wrench,
+    role: "Suivi technique",
+    desc: "Travaux, prestataires et entretien des parties communes.",
+  },
 ];
 
-function AboutPage() {
+export default function AboutPage() {
   return (
     <div>
       <section className="bg-primary py-20 text-primary-foreground md:py-28">
@@ -54,7 +79,9 @@ function AboutPage() {
       <section className="container mx-auto grid gap-10 px-4 py-20 lg:grid-cols-2 lg:gap-16">
         <div className="rounded-2xl border border-border bg-card p-8 shadow-[var(--shadow-card)]">
           <p className="text-sm font-semibold uppercase tracking-wider text-accent">Notre histoire</p>
-          <h2 className="mt-2 font-heading text-2xl font-bold md:text-3xl">Une approche moderne du syndic</h2>
+          <h2 className="mt-2 font-heading text-2xl font-bold md:text-3xl">
+            Une approche moderne du syndic
+          </h2>
           <p className="mt-4 leading-relaxed text-muted-foreground">
             Nous offrons une prise en charge complète, claire et organisée des copropriétés. Nous
             travaillons en toute impartialité pour défendre les intérêts de la copropriété et
@@ -64,7 +91,9 @@ function AboutPage() {
 
         <div className="rounded-2xl bg-primary p-8 text-primary-foreground shadow-[var(--shadow-soft)]">
           <p className="text-sm font-semibold uppercase tracking-wider text-accent">Notre mission</p>
-          <h2 className="mt-2 font-heading text-2xl font-bold md:text-3xl">Protéger et valoriser</h2>
+          <h2 className="mt-2 font-heading text-2xl font-bold md:text-3xl">
+            Protéger et valoriser
+          </h2>
           <p className="mt-4 leading-relaxed text-white/85">
             Assurer une gestion efficace et sereine des copropriétés en protégeant les intérêts
             collectifs, en valorisant le patrimoine immobilier et en garantissant le respect des
@@ -123,7 +152,7 @@ function AboutPage() {
 
         <div className="mt-16 text-center">
           <Link
-            to="/contact"
+            href="/contact"
             className="inline-flex h-12 items-center justify-center rounded-md bg-accent px-7 text-sm font-semibold text-accent-foreground shadow-lg transition hover:brightness-105"
           >
             Discuter de votre copropriété

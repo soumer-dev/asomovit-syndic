@@ -1,24 +1,17 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import type { Metadata } from "next";
+import Link from "next/link";
 import { FileText, Wallet, Vote, Hammer, Scale, Sparkles, CheckCircle2 } from "lucide-react";
 
-export const Route = createFileRoute("/services")({
-  head: () => ({
-    meta: [
-      { title: "Nos services – ASOMOVIT SYNDIC à Marrakech" },
-      {
-        name: "description",
-        content:
-          "Gestion administrative, financière, AG, travaux, juridique et entretien : découvrez tous nos services de syndic de copropriété à Marrakech.",
-      },
-      { property: "og:title", content: "Nos services – ASOMOVIT SYNDIC" },
-      {
-        property: "og:description",
-        content: "Une prise en charge complète de votre copropriété, conforme à la loi 18-00 / 106-12.",
-      },
-    ],
-  }),
-  component: ServicesPage,
-});
+export const metadata: Metadata = {
+  title: "Nos services – ASOMOVIT SYNDIC à Marrakech",
+  description:
+    "Gestion administrative, financière, AG, travaux, juridique et entretien : découvrez tous nos services de syndic de copropriété à Marrakech.",
+  openGraph: {
+    title: "Nos services – ASOMOVIT SYNDIC",
+    description:
+      "Une prise en charge complète de votre copropriété, conforme à la loi 18-00 / 106-12.",
+  },
+};
 
 const services = [
   {
@@ -83,7 +76,7 @@ const services = [
   },
 ];
 
-function ServicesPage() {
+export default function ServicesPage() {
   return (
     <div>
       <section className="bg-primary py-20 text-primary-foreground md:py-28">
@@ -93,7 +86,7 @@ function ServicesPage() {
             Une prise en charge complète de votre copropriété
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-white/85">
-            Six pôles d'expertise au service de votre tranquillité : administratif, financier,
+            Six pôles d&apos;expertise au service de votre tranquillité : administratif, financier,
             assemblées générales, travaux, juridique et entretien.
           </p>
         </div>
@@ -132,7 +125,7 @@ function ServicesPage() {
             Recevez un devis gratuit et personnalisé sous 48 heures.
           </p>
           <Link
-            to="/contact"
+            href="/contact"
             className="mt-7 inline-flex h-12 items-center justify-center rounded-md bg-accent px-7 text-sm font-semibold text-accent-foreground shadow-lg transition hover:brightness-105"
           >
             Demander un devis
