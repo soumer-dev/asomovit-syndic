@@ -4,7 +4,11 @@ import { useState } from "react";
 import { z } from "zod";
 import { Send, Loader2 } from "lucide-react";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
+import { useRecaptcha } from "@/hooks/use-recaptcha";
+
+// ---------------------------------------------------------------------------
+// Validation schema (client-side, mirrors the server schema)
+// ---------------------------------------------------------------------------
 
 const quoteSchema = z.object({
   name: z.string().trim().min(2, "Nom trop court").max(100, "Nom trop long"),
@@ -15,13 +19,19 @@ const quoteSchema = z.object({
   message: z.string().trim().min(10, "Message trop court (10 caractères min)").max(2000),
 });
 
+// ---------------------------------------------------------------------------
+// Component
+// ---------------------------------------------------------------------------
+
 export function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const { execute: executeRecaptcha } = useRecaptcha();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setErrors({});
+
     const formData = new FormData(e.currentTarget);
     const raw = {
       name: String(formData.get("name") ?? ""),
@@ -32,6 +42,7 @@ export function ContactForm() {
       message: String(formData.get("message") ?? ""),
     };
 
+    // Client-side validation
     const parsed = quoteSchema.safeParse(raw);
     if (!parsed.success) {
       const errs: Record<string, string> = {};
@@ -45,25 +56,32 @@ export function ContactForm() {
     }
 
     setLoading(true);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { error } = await (supabase.from("quote_requests" as never) as any).insert({
-      name: parsed.data.name,
-      email: parsed.data.email,
-      phone: parsed.data.phone,
-      residence_name: parsed.data.residence_name || null,
-      lots_count: parsed.data.lots_count || null,
-      message: parsed.data.message,
-    });
-    setLoading(false);
 
-    if (error) {
-      console.error(error);
-      toast.error("Une erreur est survenue. Merci de réessayer ou de nous appeler.");
-      return;
+    // Generate reCAPTCHA token (returns null when not configured — handled server-side)
+    const recaptchaToken = await executeRecaptcha("contact_form");
+
+    // Submit to API route
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...parsed.data, recaptchaToken }),
+      });
+
+      const json = (await res.json()) as { success?: boolean; error?: string };
+
+      if (!res.ok || !json.success) {
+        toast.error(json.error ?? "Une erreur est survenue. Merci de réessayer ou de nous appeler.");
+        return;
+      }
+
+      toast.success("Demande envoyée ! Nous vous recontactons sous 48h.");
+      (e.target as HTMLFormElement).reset();
+    } catch {
+      toast.error("Impossible d'envoyer la demande. Vérifiez votre connexion et réessayez.");
+    } finally {
+      setLoading(false);
     }
-
-    toast.success("Demande envoyée ! Nous vous recontactons sous 48h.");
-    (e.target as HTMLFormElement).reset();
   }
 
   return (
@@ -118,6 +136,10 @@ export function ContactForm() {
     </div>
   );
 }
+
+// ---------------------------------------------------------------------------
+// Field helper
+// ---------------------------------------------------------------------------
 
 function Field({
   label,

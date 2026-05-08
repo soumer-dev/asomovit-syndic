@@ -4,6 +4,10 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FloatingContact } from "@/components/FloatingContact";
 import { Toaster } from "@/components/ui/sonner";
+import {
+  GoogleTagManagerScript,
+  GoogleTagManagerNoScript,
+} from "@/components/analytics/GoogleTagManager";
 import "./globals.css";
 
 const inter = Inter({
@@ -86,8 +90,10 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
+        <GoogleTagManagerScript />
       </head>
       <body>
+        <GoogleTagManagerNoScript />
         <div className="flex min-h-screen flex-col bg-background">
           <SiteHeader />
           <main className="flex-1">{children}</main>
