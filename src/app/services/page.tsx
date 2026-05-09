@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import heroBg from "@/assets/hero-bg.webp";
 import { FileText, Wallet, Vote, Hammer, Scale, Sparkles, CheckCircle2 } from "lucide-react";
+import { ScrollReveal } from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Nos services – ASOMOVIT SYNDIC à Marrakech",
@@ -81,6 +82,7 @@ const services = [
 export default function ServicesPage() {
   return (
     <div>
+      {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section className="relative isolate overflow-hidden py-20 text-primary-foreground md:py-28">
         <Image
           src={heroBg}
@@ -92,23 +94,28 @@ export default function ServicesPage() {
         />
         <div className="absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
         <div className="container mx-auto px-4">
-          <p className="text-sm font-semibold uppercase tracking-wider text-accent">Nos services</p>
-          <h1 className="mt-3 max-w-3xl font-heading text-4xl font-bold leading-tight md:text-5xl">
-            Une prise en charge complète de votre copropriété
-          </h1>
-          <p className="mt-5 max-w-2xl text-lg text-white/85">
-            Six pôles d&apos;expertise au service de votre tranquillité : administratif, financier,
-            assemblées générales, travaux, juridique et entretien.
-          </p>
+          <ScrollReveal stagger={80}>
+            <p className="text-sm font-semibold uppercase tracking-wider text-accent">
+              Nos services
+            </p>
+            <h1 className="mt-3 max-w-3xl font-heading text-4xl font-bold leading-tight md:text-5xl">
+              Une prise en charge complète de votre copropriété
+            </h1>
+            <p className="mt-5 max-w-2xl text-lg text-white/85">
+              Six pôles d&apos;expertise au service de votre tranquillité : administratif,
+              financier, assemblées générales, travaux, juridique et entretien.
+            </p>
+          </ScrollReveal>
         </div>
       </section>
 
+      {/* ── SERVICE CARDS ────────────────────────────────────────────────── */}
       <section className="container mx-auto px-4 py-20">
-        <div className="grid gap-6 md:grid-cols-2">
+        <ScrollReveal className="grid gap-6 md:grid-cols-2" stagger={80}>
           {services.map(({ icon: Icon, title, items }) => (
             <article
               key={title}
-              className="rounded-2xl border border-border bg-card p-8 shadow-[var(--shadow-card)] transition hover:-translate-y-1"
+              className="card-hover rounded-2xl border border-border bg-card p-8 shadow-[var(--shadow-card)] transition hover:-translate-y-1"
             >
               <div className="flex items-center gap-4">
                 <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-primary-foreground">
@@ -126,22 +133,25 @@ export default function ServicesPage() {
               </ul>
             </article>
           ))}
-        </div>
+        </ScrollReveal>
 
-        <div className="mt-16 rounded-3xl bg-secondary/60 p-8 text-center md:p-12">
-          <h2 className="font-heading text-2xl font-bold md:text-3xl">
-            Une question sur nos services ?
-          </h2>
-          <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-            Recevez un devis gratuit et personnalisé sous 48 heures.
-          </p>
-          <Link
-            href="/contact"
-            className="mt-7 inline-flex h-12 items-center justify-center rounded-md bg-accent px-7 text-sm font-semibold text-accent-foreground shadow-lg transition hover:brightness-105"
-          >
-            Demander un devis
-          </Link>
-        </div>
+        {/* ── CTA ──────────────────────────────────────────────────────── */}
+        <ScrollReveal className="mt-16" stagger={0} delay={100}>
+          <div className="rounded-3xl bg-secondary/60 p-8 text-center md:p-12">
+            <h2 className="font-heading text-2xl font-bold md:text-3xl">
+              Une question sur nos services ?
+            </h2>
+            <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
+              Recevez un devis gratuit et personnalisé sous 48 heures.
+            </p>
+            <Link
+              href="/contact"
+              className="btn-lift mt-7 inline-flex h-12 items-center justify-center rounded-md bg-accent px-7 text-sm font-semibold text-accent-foreground shadow-lg"
+            >
+              Demander un devis
+            </Link>
+          </div>
+        </ScrollReveal>
       </section>
     </div>
   );

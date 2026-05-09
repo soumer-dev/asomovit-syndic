@@ -102,7 +102,7 @@
   --ring: oklch(0.78 0.16 70);
 }
 
-/* ── Hero animations ─────────────────────────────────────────────────────── */
+/* ── Keyframes ───────────────────────────────────────────────────────────── */
 
 @keyframes hero-zoom {
   from {
@@ -116,7 +116,7 @@
 @keyframes reveal-up {
   from {
     opacity: 0;
-    transform: translateY(28px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -124,16 +124,157 @@
   }
 }
 
-/* Slow Ken-Burns zoom on the hero background image */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Hero page-load animations ───────────────────────────────────────────── */
+
+/* Slow Ken-Burns zoom on the hero background */
 .hero-bg-anim {
   animation: hero-zoom 12s ease-out forwards;
   will-change: transform;
 }
 
-/* Fade-up reveal — add .in-view via JS or just keep it always-on for SSR */
+/*
+ * .reveal — used on hero headings/paragraphs (page.tsx).
+ * Fires immediately on load; delay is set via inline style.
+ */
 .reveal {
   opacity: 0;
   animation: reveal-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ── Scroll-reveal system ────────────────────────────────────────────────── */
+
+/*
+ * .sr-container  — the IntersectionObserver target (ScrollReveal wrapper).
+ * Direct children carry .reveal-child and receive --reveal-delay via JS.
+ *
+ * Before .sr-visible is added, children are invisible.
+ * After .sr-visible, each child animates with its own delay.
+ */
+.sr-container > * {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.sr-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/*
+ * .sr-block — for single-element reveals (headings, CTA blocks, etc.)
+ * The element itself animates, not its children.
+ */
+.sr-block {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.sr-visible.sr-block {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Header scroll shadow ────────────────────────────────────────────────── */
+
+.header-scrolled {
+  box-shadow: 0 2px 16px -4px color-mix(in oklab, var(--brand-blue) 12%, transparent);
+  transition: box-shadow 0.3s ease;
+}
+
+/* ── Mobile menu slide-down ──────────────────────────────────────────────── */
+
+.mobile-menu-enter {
+  animation: slide-down 0.22s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ── Button & card micro-interactions ───────────────────────────────────── */
+
+/*
+ * Accent CTA buttons — subtle lift + glow on hover.
+ * Applied via .btn-lift class added to existing buttons.
+ */
+.btn-lift {
+  transition:
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+.btn-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -6px color-mix(in oklab, var(--brand-orange) 35%, transparent);
+}
+
+.btn-lift:active {
+  transform: translateY(0);
+}
+
+/*
+ * Cards — smooth shadow + lift on hover.
+ * Existing cards already have `transition hover:-translate-y-1`; this
+ * enhances the shadow transition without overriding Tailwind classes.
+ */
+.card-hover {
+  transition:
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s ease;
+}
+
+.card-hover:hover {
+  box-shadow: 0 12px 32px -8px color-mix(in oklab, var(--brand-blue) 14%, transparent);
+}
+
+/* ── Residence image overlay fade ───────────────────────────────────────── */
+
+.residence-fig figcaption {
+  transition: opacity 0.3s ease;
+}
+
+.residence-fig:hover figcaption {
+  opacity: 1;
+}
+
+/* ── prefers-reduced-motion — disable ALL animations ────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .sr-container > *,
+  .sr-block,
+  .hero-bg-anim,
+  .mobile-menu-enter {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 /* ─────────────────────────────────────────────────────────────────────────── */

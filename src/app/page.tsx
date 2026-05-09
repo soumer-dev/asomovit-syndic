@@ -25,6 +25,7 @@ import {
   ArrowRight,
   Quote,
 } from "lucide-react";
+import { ScrollReveal } from "@/components/ScrollReveal";
 
 import resAppel from "@/assets/residence-appel-garden.jpg";
 import resOliviers from "@/assets/residence-riad-oliviers.jpg";
@@ -254,7 +255,7 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      {/* HERO */}
+      {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section className="relative isolate overflow-hidden">
         <video
           autoPlay
@@ -286,7 +287,7 @@ export default function HomePage() {
             <div className="reveal mt-8 flex flex-wrap gap-3" style={{ animationDelay: "300ms" }}>
               <Link
                 href="/contact"
-                className="inline-flex h-12 items-center justify-center rounded-md bg-accent px-6 text-sm font-semibold text-accent-foreground transition hover:brightness-105"
+                className="btn-lift inline-flex h-12 items-center justify-center rounded-md bg-accent px-6 text-sm font-semibold text-accent-foreground"
                 style={{
                   boxShadow:
                     "0 4px 14px -4px color-mix(in oklab, var(--brand-orange) 25%, transparent)",
@@ -296,7 +297,7 @@ export default function HomePage() {
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex h-12 items-center justify-center rounded-md bg-primary px-6 text-sm font-semibold text-primary-foreground transition hover:brightness-110"
+                className="btn-lift inline-flex h-12 items-center justify-center rounded-md bg-primary px-6 text-sm font-semibold text-primary-foreground"
                 style={{
                   boxShadow:
                     "0 4px 14px -4px color-mix(in oklab, var(--brand-blue-deep) 25%, transparent)",
@@ -309,13 +310,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ENGAGEMENTS */}
+      {/* ── ENGAGEMENTS ──────────────────────────────────────────────────── */}
       <section className="container mx-auto px-4 py-16 md:py-20">
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <ScrollReveal className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4" stagger={80}>
           {engagements.map(({ icon: Icon, title, desc }) => (
             <div
               key={title}
-              className="group rounded-2xl border border-border bg-card p-6 transition hover:-translate-y-1 hover:shadow-[var(--shadow-card)]"
+              className="card-hover group rounded-2xl border border-border bg-card p-6 transition hover:-translate-y-1 hover:shadow-[var(--shadow-card)]"
             >
               <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition group-hover:bg-accent group-hover:text-accent-foreground">
                 <Icon className="h-6 w-6" />
@@ -324,13 +325,13 @@ export default function HomePage() {
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{desc}</p>
             </div>
           ))}
-        </div>
+        </ScrollReveal>
       </section>
 
-      {/* POURQUOI NOUS */}
+      {/* ── POURQUOI NOUS ────────────────────────────────────────────────── */}
       <section className="bg-secondary/50 py-20">
         <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-2xl text-center">
+          <ScrollReveal as="div" className="mx-auto max-w-2xl text-center" stagger={0} delay={0}>
             <p
               className="text-sm font-semibold uppercase tracking-wider"
               style={{ color: "var(--orange-deep)" }}
@@ -343,10 +344,13 @@ export default function HomePage() {
             <p className="mt-4 text-muted-foreground">
               Notre engagement : vous offrir une gestion sereine, transparente et durable.
             </p>
-          </div>
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          </ScrollReveal>
+          <ScrollReveal className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3" stagger={70}>
             {reasons.map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="rounded-2xl bg-card p-6 shadow-[var(--shadow-card)]">
+              <div
+                key={title}
+                className="card-hover rounded-2xl bg-card p-6 shadow-[var(--shadow-card)]"
+              >
                 <div className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-accent/15 text-accent">
                   <Icon className="h-5 w-5" />
                 </div>
@@ -354,13 +358,16 @@ export default function HomePage() {
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{desc}</p>
               </div>
             ))}
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* SERVICES APERÇU */}
+      {/* ── SERVICES APERÇU ──────────────────────────────────────────────── */}
       <section className="container mx-auto px-4 py-20">
-        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+        <ScrollReveal
+          className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end"
+          stagger={60}
+        >
           <div className="max-w-xl">
             <p
               className="text-sm font-semibold uppercase tracking-wider"
@@ -374,16 +381,16 @@ export default function HomePage() {
           </div>
           <Link
             href="/services"
-            className="inline-flex items-center text-sm font-semibold text-primary hover:text-accent"
+            className="inline-flex items-center text-sm font-semibold text-primary transition-colors hover:text-accent"
           >
             Voir tous les services <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
-        </div>
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        </ScrollReveal>
+        <ScrollReveal className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" stagger={70}>
           {services.map(({ icon: Icon, title, desc }) => (
             <div
               key={title}
-              className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition hover:-translate-y-1 hover:border-accent hover:shadow-[var(--shadow-card)]"
+              className="card-hover group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition hover:-translate-y-1 hover:border-accent hover:shadow-[var(--shadow-card)]"
             >
               <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-primary-foreground transition group-hover:bg-accent group-hover:text-accent-foreground">
                 <Icon className="h-6 w-6" />
@@ -392,10 +399,10 @@ export default function HomePage() {
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{desc}</p>
             </div>
           ))}
-        </div>
+        </ScrollReveal>
       </section>
 
-      {/* MÉTHODE */}
+      {/* ── MÉTHODE ──────────────────────────────────────────────────────── */}
       <section
         className="py-20 text-primary-foreground"
         style={{
@@ -403,7 +410,7 @@ export default function HomePage() {
         }}
       >
         <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-2xl text-center">
+          <ScrollReveal className="mx-auto max-w-2xl text-center" stagger={0}>
             <p
               className="text-sm font-semibold uppercase tracking-wider"
               style={{ color: "var(--orange-bright)" }}
@@ -413,8 +420,8 @@ export default function HomePage() {
             <h2 className="mt-2 font-heading text-3xl font-bold md:text-4xl">
               4 étapes pour une gestion sans faille
             </h2>
-          </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          </ScrollReveal>
+          <ScrollReveal className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4" stagger={90}>
             {method.map((s) => (
               <div
                 key={s.n}
@@ -425,13 +432,13 @@ export default function HomePage() {
                 <p className="mt-2 text-sm leading-relaxed text-white/80">{s.desc}</p>
               </div>
             ))}
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* RÉSIDENCES */}
+      {/* ── RÉSIDENCES ───────────────────────────────────────────────────── */}
       <section className="container mx-auto px-4 py-20">
-        <div className="mx-auto max-w-2xl text-center">
+        <ScrollReveal className="mx-auto max-w-2xl text-center" stagger={0}>
           <p
             className="text-sm font-semibold uppercase tracking-wider"
             style={{ color: "var(--orange-amber)" }}
@@ -444,12 +451,12 @@ export default function HomePage() {
           <p className="mt-4 text-muted-foreground">
             Une sélection de copropriétés à Marrakech accompagnées au quotidien par nos équipes.
           </p>
-        </div>
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        </ScrollReveal>
+        <ScrollReveal className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" stagger={70}>
           {residences.map((r) => (
             <figure
               key={r.name}
-              className="group relative overflow-hidden rounded-2xl shadow-[var(--shadow-card)]"
+              className="residence-fig group relative overflow-hidden rounded-2xl shadow-[var(--shadow-card)]"
             >
               <Image
                 src={r.img}
@@ -465,13 +472,13 @@ export default function HomePage() {
               </figcaption>
             </figure>
           ))}
-        </div>
+        </ScrollReveal>
       </section>
 
-      {/* TÉMOIGNAGES */}
+      {/* ── TÉMOIGNAGES ──────────────────────────────────────────────────── */}
       <section className="bg-secondary/50 py-20">
         <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-2xl text-center">
+          <ScrollReveal className="mx-auto max-w-2xl text-center" stagger={0}>
             <p
               className="text-sm font-semibold uppercase tracking-wider"
               style={{ color: "var(--orange-soft)" }}
@@ -481,12 +488,12 @@ export default function HomePage() {
             <h2 className="mt-2 font-heading text-3xl font-bold md:text-4xl">
               Ce que disent les copropriétaires
             </h2>
-          </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          </ScrollReveal>
+          <ScrollReveal className="mt-12 grid gap-6 md:grid-cols-3" stagger={90}>
             {testimonials.map((t) => (
               <blockquote
                 key={t.name}
-                className="rounded-2xl bg-card p-6 shadow-[var(--shadow-card)]"
+                className="card-hover rounded-2xl bg-card p-6 shadow-[var(--shadow-card)]"
               >
                 <Quote className="h-7 w-7 text-accent" />
                 <p className="mt-4 text-sm leading-relaxed text-foreground/90">
@@ -498,14 +505,14 @@ export default function HomePage() {
                 </footer>
               </blockquote>
             ))}
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* ── FAQ ──────────────────────────────────────────────────────────── */}
       <section className="container mx-auto px-4 py-20">
         <div className="mx-auto max-w-3xl">
-          <div className="text-center">
+          <ScrollReveal className="text-center" stagger={0}>
             <p
               className="text-sm font-semibold uppercase tracking-wider"
               style={{ color: "var(--orange-warm)" }}
@@ -515,52 +522,56 @@ export default function HomePage() {
             <h2 className="mt-2 font-heading text-3xl font-bold md:text-4xl">
               Tout savoir sur votre syndic à Marrakech
             </h2>
-          </div>
-          <Accordion
-            type="single"
-            collapsible
-            className="mt-10 rounded-2xl border border-border bg-card"
-          >
-            {faqs.map((f, i) => (
-              <AccordionItem key={f.q} value={`faq-${i}`} className="px-6 last:border-b-0">
-                <AccordionTrigger className="font-heading text-base font-semibold text-foreground hover:no-underline hover:text-accent py-5">
-                  {f.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-sm leading-relaxed text-muted-foreground pb-5">
-                  {f.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          </ScrollReveal>
+          <ScrollReveal className="mt-10" stagger={0} delay={100}>
+            <Accordion
+              type="single"
+              collapsible
+              className="rounded-2xl border border-border bg-card"
+            >
+              {faqs.map((f, i) => (
+                <AccordionItem key={f.q} value={`faq-${i}`} className="px-6 last:border-b-0">
+                  <AccordionTrigger className="py-5 font-heading text-base font-semibold text-foreground hover:text-accent hover:no-underline">
+                    {f.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="pb-5 text-sm leading-relaxed text-muted-foreground">
+                    {f.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* CTA FINAL */}
+      {/* ── CTA FINAL ────────────────────────────────────────────────────── */}
       <section className="container mx-auto px-4 pb-20">
-        <div
-          className="overflow-hidden rounded-3xl px-6 py-14 text-center text-accent-foreground shadow-[var(--shadow-soft)] md:px-12 md:py-20"
-          style={{
-            background:
-              "linear-gradient(135deg, var(--brand-blue-deep) 0%, var(--brand-blue) 100%)",
-          }}
-        >
-          <h2 className="mx-auto max-w-3xl font-heading text-3xl font-bold md:text-4xl">
-            Confiez-nous la gestion de votre copropriété
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base opacity-90">
-            Recevez un devis gratuit et personnalisé sous 48 heures.
-          </p>
-          <Link
-            href="/contact"
-            className="mt-8 inline-flex h-12 items-center justify-center rounded-md bg-accent px-6 text-sm font-semibold text-accent-foreground transition hover:brightness-105"
+        <ScrollReveal stagger={0} delay={0}>
+          <div
+            className="overflow-hidden rounded-3xl px-6 py-14 text-center text-accent-foreground shadow-[var(--shadow-soft)] md:px-12 md:py-20"
             style={{
-              boxShadow:
-                "0 4px 14px -4px color-mix(in oklab, var(--brand-orange) 25%, transparent)",
+              background:
+                "linear-gradient(135deg, var(--brand-blue-deep) 0%, var(--brand-blue) 100%)",
             }}
           >
-            Demander un devis gratuit <ArrowRight className="ml-2 h-4 w-4" />
-          </Link>
-        </div>
+            <h2 className="mx-auto max-w-3xl font-heading text-3xl font-bold md:text-4xl">
+              Confiez-nous la gestion de votre copropriété
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-base opacity-90">
+              Recevez un devis gratuit et personnalisé sous 48 heures.
+            </p>
+            <Link
+              href="/contact"
+              className="btn-lift mt-8 inline-flex h-12 items-center justify-center rounded-md bg-accent px-6 text-sm font-semibold text-accent-foreground"
+              style={{
+                boxShadow:
+                  "0 4px 14px -4px color-mix(in oklab, var(--brand-orange) 25%, transparent)",
+              }}
+            >
+              Demander un devis gratuit <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </div>
+        </ScrollReveal>
       </section>
     </>
   );

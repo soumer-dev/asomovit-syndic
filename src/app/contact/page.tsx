@@ -3,6 +3,7 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import Image from "next/image";
 import heroBg from "@/assets/hero-bg.webp";
 import { ContactForm } from "./ContactForm";
+import { ScrollReveal } from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Contact & Devis – ASOMOVIT SYNDIC à Marrakech",
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div>
+      {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section className="relative isolate overflow-hidden py-20 text-primary-foreground md:py-28">
         <Image
           src={heroBg}
@@ -28,27 +30,30 @@ export default function ContactPage() {
         />
         <div className="absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
         <div className="container mx-auto px-4">
-          <p className="text-sm font-semibold uppercase tracking-wider text-accent">
-            Contact &amp; Devis
-          </p>
-          <h1 className="mt-3 max-w-3xl font-heading text-4xl font-bold leading-tight md:text-5xl">
-            Parlons de votre copropriété
-          </h1>
-          <p className="mt-5 max-w-2xl text-lg text-white/85">
-            Vous souhaitez changer de syndic ou confier la gestion de votre copropriété à des
-            professionnels compétents ? Notre équipe est à votre disposition.
-          </p>
+          <ScrollReveal stagger={80}>
+            <p className="text-sm font-semibold uppercase tracking-wider text-accent">
+              Contact &amp; Devis
+            </p>
+            <h1 className="mt-3 max-w-3xl font-heading text-4xl font-bold leading-tight md:text-5xl">
+              Parlons de votre copropriété
+            </h1>
+            <p className="mt-5 max-w-2xl text-lg text-white/85">
+              Vous souhaitez changer de syndic ou confier la gestion de votre copropriété à des
+              professionnels compétents ? Notre équipe est à votre disposition.
+            </p>
+          </ScrollReveal>
         </div>
       </section>
 
+      {/* ── FORM + COORDONNÉES ───────────────────────────────────────────── */}
       <section className="container mx-auto grid gap-10 px-4 py-16 lg:grid-cols-5">
-        {/* FORM */}
-        <div className="lg:col-span-3">
+        {/* Form animates in from the left */}
+        <ScrollReveal className="lg:col-span-3" stagger={0} delay={0}>
           <ContactForm />
-        </div>
+        </ScrollReveal>
 
-        {/* COORDONNÉES */}
-        <aside className="space-y-5 lg:col-span-2">
+        {/* Contact cards stagger in */}
+        <ScrollReveal as="aside" className="space-y-5 lg:col-span-2" stagger={80} delay={60}>
           <ContactCard icon={Phone} title="Téléphone">
             <a href="tel:+212661901209" className="font-semibold text-primary hover:text-accent">
               +212 661-901209
@@ -70,23 +75,25 @@ export default function ContactPage() {
             <p className="text-sm text-foreground/85">Samedi : 9h00 – 13h00</p>
             <p className="mt-1 text-xs text-accent">Urgences : 7j/7</p>
           </ContactCard>
-        </aside>
+        </ScrollReveal>
       </section>
 
-      {/* GOOGLE MAPS */}
+      {/* ── GOOGLE MAPS ──────────────────────────────────────────────────── */}
       <section className="container mx-auto px-4 pb-20">
-        <div className="overflow-hidden rounded-2xl shadow-[var(--shadow-card)]">
-          <iframe
-            title="ASOMOVIT SYNDIC – Marrakech"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3397.1!2d-7.9998829!3d31.6412895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdafefc318bfe6bb%3A0x225b6db315207c08!2sASOMOVIT%20MULTISERVICES!5e0!3m2!1sfr!2sma!4v1"
-            width="100%"
-            height="420"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            className="block w-full border-0"
-            allowFullScreen
-          />
-        </div>
+        <ScrollReveal stagger={0} delay={0}>
+          <div className="overflow-hidden rounded-2xl shadow-[var(--shadow-card)]">
+            <iframe
+              title="ASOMOVIT SYNDIC – Marrakech"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3397.1!2d-7.9998829!3d31.6412895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdafefc318bfe6bb%3A0x225b6db315207c08!2sASOMOVIT%20MULTISERVICES!5e0!3m2!1sfr!2sma!4v1"
+              width="100%"
+              height="420"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="block w-full border-0"
+              allowFullScreen
+            />
+          </div>
+        </ScrollReveal>
       </section>
     </div>
   );
@@ -102,7 +109,7 @@ function ContactCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex gap-4 rounded-2xl border border-border bg-card p-5 shadow-[var(--shadow-card)]">
+    <div className="card-hover flex gap-4 rounded-2xl border border-border bg-card p-5 shadow-[var(--shadow-card)]">
       <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/15 text-accent">
         <Icon className="h-5 w-5" />
       </div>
