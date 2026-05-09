@@ -74,8 +74,8 @@
 
   --gradient-hero: linear-gradient(
     135deg,
-    color-mix(in oklab, var(--brand-blue-deep) 30%, transparent) 0%,
-    color-mix(in oklab, var(--brand-blue) 10%, transparent) 100%
+    color-mix(in oklab, var(--brand-blue-deep) 50%, transparent) 0%,
+    color-mix(in oklab, var(--brand-blue) 30%, transparent) 100%
   );
   --gradient-cta: linear-gradient(135deg, var(--brand-orange) 0%, var(--brand-orange-soft) 100%);
   --shadow-soft: 0 8px 30px -12px color-mix(in oklab, var(--brand-blue) 10%, transparent);

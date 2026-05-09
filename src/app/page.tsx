@@ -26,7 +26,6 @@ import {
   Quote,
 } from "lucide-react";
 
-import heroImg from "@/assets/hero-marrakech.webp";
 import resAppel from "@/assets/residence-appel-garden.jpg";
 import resOliviers from "@/assets/residence-riad-oliviers.jpg";
 import resYasmina from "@/assets/residence-yasmina.jpg";
@@ -257,14 +256,16 @@ export default function HomePage() {
 
       {/* HERO */}
       <section className="relative isolate overflow-hidden">
-        <Image
-          src={heroImg}
-          alt="Résidence à Marrakech gérée par ASOMOVIT SYNDIC"
-          className="hero-bg-anim absolute inset-0 -z-10 h-full w-full object-cover"
-          fill
-          priority
-          sizes="100vw"
-        />
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          aria-hidden="true"
+          className="absolute inset-0 -z-10 h-full w-full object-cover"
+        >
+          <source src="/hero-marrakech.mp4" type="video/mp4" />
+        </video>
         <div className="absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
         <div className="container mx-auto px-4 py-24 md:py-36 lg:py-44">
           <div className="max-w-3xl text-white">
