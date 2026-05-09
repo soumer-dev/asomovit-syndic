@@ -125,7 +125,34 @@ export function isResendEnabled(): boolean {
 }
 
 // ---------------------------------------------------------------------------
-// ④ Application URL  (server-only helper)
+// ④ Supabase  (server-side helper — NEXT_PUBLIC_ vars are safe anywhere,
+//    but this helper is only called from server code in the API route)
+// ---------------------------------------------------------------------------
+
+/**
+ * Returns the Supabase configuration object.
+ * Both variables are NEXT_PUBLIC_ so they are safe to read on the server.
+ *
+ * `enabled` is false when either variable is missing or a placeholder.
+ * When disabled, the API route skips the DB insert and falls back to email.
+ */
+export function getSupabaseConfig(): {
+  enabled: boolean;
+  url: string;
+  anonKey: string;
+} {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
+  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
+
+  if (!isConfigured(url) || !isConfigured(anonKey)) {
+    return { enabled: false, url: "", anonKey: "" };
+  }
+
+  return { enabled: true, url, anonKey };
+}
+
+// ---------------------------------------------------------------------------
+// ⑤ Application URL  (server-only helper)
 // ---------------------------------------------------------------------------
 
 /**
