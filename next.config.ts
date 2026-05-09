@@ -7,6 +7,8 @@ const nextConfig: NextConfig = {
   // Image optimization configuration
   images: {
     formats: ["image/avif", "image/webp"],
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
 
   // Compress responses

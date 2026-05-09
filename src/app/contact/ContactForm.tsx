@@ -71,7 +71,9 @@ export function ContactForm() {
       const json = (await res.json()) as { success?: boolean; error?: string };
 
       if (!res.ok || !json.success) {
-        toast.error(json.error ?? "Une erreur est survenue. Merci de réessayer ou de nous appeler.");
+        toast.error(
+          json.error ?? "Une erreur est survenue. Merci de réessayer ou de nous appeler.",
+        );
         return;
       }
 
@@ -112,9 +114,7 @@ export function ContactForm() {
             className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm transition focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
             placeholder="Parlez-nous brièvement de votre copropriété et de vos besoins…"
           />
-          {errors.message && (
-            <p className="mt-1 text-xs text-destructive">{errors.message}</p>
-          )}
+          {errors.message && <p className="mt-1 text-xs text-destructive">{errors.message}</p>}
         </div>
 
         <button

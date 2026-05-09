@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.asomovit-syndic.ma/sitemap.xml
+Sitemap: https://syndic.asomovit.com/sitemap.xml

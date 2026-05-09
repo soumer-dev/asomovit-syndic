@@ -21,9 +21,7 @@ export type SendEmailOptions = {
   replyTo?: string;
 };
 
-export type SendEmailResult =
-  | { success: true; id: string }
-  | { success: false; error: string };
+export type SendEmailResult = { success: true; id: string } | { success: false; error: string };
 
 /**
  * Send an email via Resend.

@@ -37,3 +37,9 @@ pnpm-debug.log*
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# Supabase local config (contains project ID)
+supabase/config.toml
+
+# Lockfile — use npm only
+bun.lockb

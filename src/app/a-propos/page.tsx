@@ -2,7 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import heroBg from "@/assets/hero-bg.webp";
-import { Eye, Award, HeartHandshake, ShieldCheck, Scale, Briefcase, Calculator, Wrench } from "lucide-react";
+import {
+  Eye,
+  Award,
+  HeartHandshake,
+  ShieldCheck,
+  Scale,
+  Briefcase,
+  Calculator,
+  Wrench,
+} from "lucide-react";
 
 export const metadata: Metadata = {
   title: "À propos – ASOMOVIT SYNDIC, syndic à Marrakech",
@@ -89,7 +98,9 @@ export default function AboutPage() {
 
       <section className="container mx-auto grid gap-10 px-4 py-20 lg:grid-cols-2 lg:gap-16">
         <div className="rounded-2xl border border-border bg-card p-8 shadow-[var(--shadow-card)]">
-          <p className="text-sm font-semibold uppercase tracking-wider text-accent">Notre histoire</p>
+          <p className="text-sm font-semibold uppercase tracking-wider text-accent">
+            Notre histoire
+          </p>
           <h2 className="mt-2 font-heading text-2xl font-bold md:text-3xl">
             Une approche moderne du syndic
           </h2>
@@ -101,7 +112,9 @@ export default function AboutPage() {
         </div>
 
         <div className="rounded-2xl bg-primary p-8 text-primary-foreground shadow-[var(--shadow-soft)]">
-          <p className="text-sm font-semibold uppercase tracking-wider text-accent">Notre mission</p>
+          <p className="text-sm font-semibold uppercase tracking-wider text-accent">
+            Notre mission
+          </p>
           <h2 className="mt-2 font-heading text-2xl font-bold md:text-3xl">
             Protéger et valoriser
           </h2>
@@ -116,7 +129,9 @@ export default function AboutPage() {
       <section className="bg-secondary/50 py-20">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-wider text-accent">Nos valeurs</p>
+            <p className="text-sm font-semibold uppercase tracking-wider text-accent">
+              Nos valeurs
+            </p>
             <h2 className="mt-2 font-heading text-3xl font-bold md:text-4xl">
               Les principes qui guident notre travail
             </h2>

@@ -33,7 +33,7 @@ import resWarda from "@/assets/residence-warda.jpg";
 import resRayhana from "@/assets/residence-rayhana.jpg";
 import resHoriya from "@/assets/residence-al-horiya.jpg";
 
-const SITE_URL = "https://www.asomovit-syndic.ma";
+const SITE_URL = "https://syndic.asomovit.com";
 
 export const metadata: Metadata = {
   title: "Syndic de copropriété à Marrakech | ASOMOVIT SYNDIC",
@@ -273,8 +273,8 @@ export default function HomePage() {
               className="reveal font-heading text-4xl font-bold leading-tight md:text-6xl"
               style={{ animationDelay: "0ms" }}
             >
-              Syndic de copropriété à{" "}
-              <span className="text-white">Marrakech</span> — gestion transparente &amp; sereine
+              Syndic de copropriété à <span className="text-white">Marrakech</span> — gestion
+              transparente &amp; sereine
             </h1>
             <p
               className="reveal mt-5 max-w-2xl text-lg text-white/90 md:text-xl"
@@ -283,10 +283,7 @@ export default function HomePage() {
               ASOMOVIT SYNDIC accompagne les copropriétés de Marrakech : gestion administrative,
               financière, technique et juridique, en stricte conformité avec la loi 18-00 / 106-12.
             </p>
-            <div
-              className="reveal mt-8 flex flex-wrap gap-3"
-              style={{ animationDelay: "300ms" }}
-            >
+            <div className="reveal mt-8 flex flex-wrap gap-3" style={{ animationDelay: "300ms" }}>
               <Link
                 href="/contact"
                 className="inline-flex h-12 items-center justify-center rounded-md bg-accent px-6 text-sm font-semibold text-accent-foreground transition hover:brightness-105"
@@ -492,7 +489,9 @@ export default function HomePage() {
                 className="rounded-2xl bg-card p-6 shadow-[var(--shadow-card)]"
               >
                 <Quote className="h-7 w-7 text-accent" />
-                <p className="mt-4 text-sm leading-relaxed text-foreground/90">&ldquo;{t.quote}&rdquo;</p>
+                <p className="mt-4 text-sm leading-relaxed text-foreground/90">
+                  &ldquo;{t.quote}&rdquo;
+                </p>
                 <footer className="mt-5 border-t border-border pt-4">
                   <p className="font-semibold">{t.name}</p>
                   <p className="text-xs text-muted-foreground">{t.role}</p>
@@ -517,13 +516,13 @@ export default function HomePage() {
               Tout savoir sur votre syndic à Marrakech
             </h2>
           </div>
-          <Accordion type="single" collapsible className="mt-10 rounded-2xl border border-border bg-card">
+          <Accordion
+            type="single"
+            collapsible
+            className="mt-10 rounded-2xl border border-border bg-card"
+          >
             {faqs.map((f, i) => (
-              <AccordionItem
-                key={f.q}
-                value={`faq-${i}`}
-                className="px-6 last:border-b-0"
-              >
+              <AccordionItem key={f.q} value={`faq-${i}`} className="px-6 last:border-b-0">
                 <AccordionTrigger className="font-heading text-base font-semibold text-foreground hover:no-underline hover:text-accent py-5">
                   {f.q}
                 </AccordionTrigger>
@@ -541,7 +540,8 @@ export default function HomePage() {
         <div
           className="overflow-hidden rounded-3xl px-6 py-14 text-center text-accent-foreground shadow-[var(--shadow-soft)] md:px-12 md:py-20"
           style={{
-            background: "linear-gradient(135deg, var(--brand-blue-deep) 0%, var(--brand-blue) 100%)",
+            background:
+              "linear-gradient(135deg, var(--brand-blue-deep) 0%, var(--brand-blue) 100%)",
           }}
         >
           <h2 className="mx-auto max-w-3xl font-heading text-3xl font-bold md:text-4xl">
@@ -554,7 +554,8 @@ export default function HomePage() {
             href="/contact"
             className="mt-8 inline-flex h-12 items-center justify-center rounded-md bg-accent px-6 text-sm font-semibold text-accent-foreground transition hover:brightness-105"
             style={{
-              boxShadow:"0 4px 14px -4px color-mix(in oklab, var(--brand-orange) 25%, transparent)",
+              boxShadow:
+                "0 4px 14px -4px color-mix(in oklab, var(--brand-orange) 25%, transparent)",
             }}
           >
             Demander un devis gratuit <ArrowRight className="ml-2 h-4 w-4" />

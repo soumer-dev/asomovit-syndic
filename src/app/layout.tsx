@@ -23,7 +23,7 @@ const poppins = Poppins({
   display: "swap",
 });
 
-const SITE_URL = "https://www.asomovit-syndic.ma";
+const SITE_URL = "https://syndic.asomovit.com";
 const OG_IMAGE = `${SITE_URL}/og-image.jpg`;
 
 const localBusinessJsonLd = {
@@ -78,11 +78,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr" className={`${inter.variable} ${poppins.variable}`}>
       <head>

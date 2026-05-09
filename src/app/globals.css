@@ -31,7 +31,7 @@
   --color-ring: var(--ring);
   --color-ring-offset-background: var(--background);
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-heading: "Plus Jakarta Sans","Inter",ui-sans-serif,system-ui,sans-serif;
+  --font-heading: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
@@ -66,11 +66,11 @@
   --brand-orange: oklch(0.68 0.19 45);
   --brand-orange-soft: oklch(0.75 0.17 55);
   /* Nuances par section */
-  --orange-deep: oklch(0.58 0.20 35);
+  --orange-deep: oklch(0.58 0.2 35);
   --orange-warm: oklch(0.65 0.19 42);
-  --orange-bright: oklch(0.72 0.20 50);
+  --orange-bright: oklch(0.72 0.2 50);
   --orange-soft: oklch(0.78 0.15 60);
-  --orange-amber: oklch(0.80 0.17 70);
+  --orange-amber: oklch(0.8 0.17 70);
 
   --gradient-hero: linear-gradient(
     135deg,
@@ -105,8 +105,12 @@
 /* ── Hero animations ─────────────────────────────────────────────────────── */
 
 @keyframes hero-zoom {
-  from { transform: scale(1);   }
-  to   { transform: scale(1.08); }
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
 }
 
 @keyframes reveal-up {
@@ -150,7 +154,12 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-heading);
     letter-spacing: -0.02em;
   }

@@ -12,7 +12,6 @@ const NAV = [
   { href: "/", label: "Accueil" },
   { href: "/a-propos", label: "À propos" },
   { href: "/services", label: "Services" },
-  { href: "/contact", label: "Contact" },
 ] as const;
 
 export function SiteHeader() {

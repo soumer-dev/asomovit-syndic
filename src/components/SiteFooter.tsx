@@ -29,6 +29,7 @@ export function SiteFooter() {
             <a
               href="https://web.facebook.com/profile.php?id=61583660979278"
               target="_blank"
+              rel="noopener noreferrer"
               aria-label="Facebook"
               className="rounded-full bg-white/10 p-2 transition hover:bg-white/20"
             >
@@ -37,6 +38,7 @@ export function SiteFooter() {
             <a
               href="https://www.instagram.com/syndic.asomovit/"
               target="_blank"
+              rel="noopener noreferrer"
               aria-label="Instagram"
               className="rounded-full bg-white/10 p-2 transition hover:bg-white/20"
             >
@@ -45,6 +47,7 @@ export function SiteFooter() {
             <a
               href="https://www.linkedin.com/company/asomovit-syndic/"
               target="_blank"
+              rel="noopener noreferrer"
               aria-label="LinkedIn"
               className="rounded-full bg-white/10 p-2 transition hover:bg-white/20"
             >
@@ -100,10 +103,11 @@ export function SiteFooter() {
               </a>
             </li>
             <li className="flex items-start gap-2">
-              <Mail className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
               <a
                 href="https://www.google.com/maps/place/ASOMOVIT+MULTISERVICES/data=!4m2!3m1!1s0x0:0x225b6db315207c08?sa=X&ved=1t:2428&ictx=111"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="break-all hover:text-accent"
               >
                 Allal El Fassi, Marrakech
@@ -128,12 +132,12 @@ export function SiteFooter() {
             . Tous droits réservés.
           </p>
           <p className="flex gap-4">
-            <a href="#" className="hover:text-accent">
+            <Link href="/mentions-legales" className="hover:text-accent">
               Mentions légales
-            </a>
-            <a href="#" className="hover:text-accent">
+            </Link>
+            <Link href="/politique-confidentialite" className="hover:text-accent">
               Politique de confidentialité
-            </a>
+            </Link>
           </p>
         </div>
       </div>

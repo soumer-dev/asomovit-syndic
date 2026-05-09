@@ -29,8 +29,6 @@ const PLACEHOLDERS = new Set([
   "your_resend_api_key",
   // Generic
   "your_recipient_email",
-  "your_supabase_url",
-  "your_supabase_anon_key",
   "",
 ]);
 
@@ -90,7 +88,8 @@ export function getRecaptchaSecretKey(): string | null {
  * SERVER-ONLY — never call this from a client component.
  *
  * `enabled` is false when either RESEND_API_KEY or RECIPIENT_EMAIL is
- * missing, empty, or a placeholder. When disabled, sendEmail() is a no-op.
+ * missing, empty, or a placeholder. When disabled, the API route returns
+ * a 503 so the user knows to contact us by phone.
  */
 export function getResendConfig(): {
   enabled: boolean;
@@ -125,34 +124,7 @@ export function isResendEnabled(): boolean {
 }
 
 // ---------------------------------------------------------------------------
-// ④ Supabase  (server-side helper — NEXT_PUBLIC_ vars are safe anywhere,
-//    but this helper is only called from server code in the API route)
-// ---------------------------------------------------------------------------
-
-/**
- * Returns the Supabase configuration object.
- * Both variables are NEXT_PUBLIC_ so they are safe to read on the server.
- *
- * `enabled` is false when either variable is missing or a placeholder.
- * When disabled, the API route skips the DB insert and falls back to email.
- */
-export function getSupabaseConfig(): {
-  enabled: boolean;
-  url: string;
-  anonKey: string;
-} {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
-  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
-
-  if (!isConfigured(url) || !isConfigured(anonKey)) {
-    return { enabled: false, url: "", anonKey: "" };
-  }
-
-  return { enabled: true, url, anonKey };
-}
-
-// ---------------------------------------------------------------------------
-// ⑤ Application URL  (server-only helper)
+// ④ Application URL  (server-only helper)
 // ---------------------------------------------------------------------------
 
 /**

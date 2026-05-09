@@ -55,12 +55,14 @@ src/
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone <repository-url>
 cd asomovit-syndic
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 # or
@@ -68,17 +70,20 @@ bun install
 ```
 
 3. Set up environment variables:
+
 ```bash
 cp .env.example .env.local
 ```
 
 Edit `.env.local` with your Supabase credentials:
+
 ```env
 NEXT_PUBLIC_SUPABASE_URL="your-supabase-url"
 NEXT_PUBLIC_SUPABASE_ANON_KEY="your-supabase-anon-key"
 ```
 
 4. Run the development server:
+
 ```bash
 npm run dev
 # or
@@ -96,6 +101,7 @@ The contact form requires a Supabase table. Run the migration:
 ```
 
 Or manually create the `quote_requests` table with the following columns:
+
 - `id` (uuid, primary key)
 - `created_at` (timestamptz)
 - `name` (text)
@@ -115,12 +121,14 @@ npm run start
 ## Deployment
 
 This Next.js application can be deployed to:
+
 - **Vercel** (recommended, zero-config)
 - **Netlify**
 - **AWS Amplify**
 - **Any Node.js hosting**
 
 For Vercel:
+
 ```bash
 vercel
 ```
