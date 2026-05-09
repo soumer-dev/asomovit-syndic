@@ -1,6 +1,7 @@
 @import "tailwindcss" source(none);
 @source "../../src";
-@import "tw-animate-css";
+/* tw-animate-css removed — all keyframes we use are defined inline below,
+   eliminating this render-blocking CSS import from the critical path. */
 
 @custom-variant dark (&:is(.dark *));
 
@@ -32,6 +33,9 @@
   --color-ring-offset-background: var(--background);
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-heading: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  /* Accordion animations — inlined from tw-animate-css */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
 }
 
 :root {
@@ -103,6 +107,17 @@
 }
 
 /* ── Keyframes ───────────────────────────────────────────────────────────── */
+
+/* Accordion open/close — previously provided by tw-animate-css */
+@keyframes accordion-down {
+  from { height: 0; }
+  to   { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to   { height: 0; }
+}
 
 @keyframes hero-zoom {
   from {

@@ -42,7 +42,15 @@ export function SiteHeader() {
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:h-20">
         <Link href="/" className="flex items-center gap-3" aria-label="ASOMOVIT SYNDIC – accueil">
-          <Image src={logo} alt="ASOMOVIT SYNDIC" className="h-14 w-auto md:h-[70px]" height={80} />
+          <Image
+            src={logo}
+            alt="ASOMOVIT SYNDIC"
+            className="h-14 w-auto md:h-[70px]"
+            height={80}
+            width={115}
+            priority
+            fetchPriority="high"
+          />
           <span className="hidden font-heading text-lg font-bold leading-tight text-primary sm:inline-flex flex-col" />
         </Link>
 

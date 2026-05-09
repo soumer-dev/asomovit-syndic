@@ -82,11 +82,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr" className={`${inter.variable} ${poppins.variable}`}>
       <head>
+        {/* Preconnect to font origins — eliminates connection setup delay for Inter/Poppins */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Preconnect to GTM so the lazyOnload script connects faster when it fires */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
-        <GoogleTagManagerScript />
       </head>
       <body>
         <GoogleTagManagerNoScript />
@@ -97,6 +101,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <FloatingContact />
           <Toaster richColors position="top-center" />
         </div>
+        {/* GTM loaded after page content — lazyOnload fires on idle, off critical path */}
+        <GoogleTagManagerScript />
       </body>
     </html>
   );

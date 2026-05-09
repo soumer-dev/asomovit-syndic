@@ -35,7 +35,7 @@ export function FloatingContact() {
         aria-label="Contacter sur WhatsApp"
         className={`${btnBase} bg-[#25D366] hover:shadow-[#25D366]/50`}
       >
-        <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-[#25D366] opacity-40 group-hover:opacity-0" />
+        <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-[#25D366] opacity-40 group-hover:opacity-0 motion-reduce:hidden" />
         <WhatsAppIcon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
       </a>
 
@@ -45,7 +45,7 @@ export function FloatingContact() {
         aria-label="Appeler ASOMOVIT SYNDIC"
         className={`${btnBase} bg-accent text-accent-foreground hover:shadow-accent/40`}
       >
-        <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-accent opacity-40 group-hover:opacity-0" />
+        <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-accent opacity-40 group-hover:opacity-0 motion-reduce:hidden" />
         <Phone className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
       </a>
     </div>

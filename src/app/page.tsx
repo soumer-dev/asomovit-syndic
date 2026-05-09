@@ -26,6 +26,7 @@ import {
   Quote,
 } from "lucide-react";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import heroWebp from "@/assets/hero-marrakech.webp";
 
 import resAppel from "@/assets/residence-appel-garden.jpg";
 import resOliviers from "@/assets/residence-riad-oliviers.jpg";
@@ -257,13 +258,27 @@ export default function HomePage() {
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section className="relative isolate overflow-hidden">
+        {/* Static image on mobile — eliminates 4.6 MB video download on slow connections */}
+        <Image
+          src={heroWebp}
+          alt=""
+          aria-hidden="true"
+          fill
+          priority
+          fetchPriority="high"
+          sizes="100vw"
+          className="absolute inset-0 -z-10 h-full w-full object-cover md:hidden"
+          quality={75}
+        />
+        {/* Video only on desktop — hidden on mobile via CSS, never downloaded */}
         <video
           autoPlay
           muted
           loop
           playsInline
           aria-hidden="true"
-          className="absolute inset-0 -z-10 h-full w-full object-cover"
+          preload="none"
+          className="absolute inset-0 -z-10 h-full w-full object-cover hidden md:block"
         >
           <source src="/hero-marrakech.mp4" type="video/mp4" />
         </video>
@@ -465,6 +480,7 @@ export default function HomePage() {
                 width={600}
                 height={256}
                 loading="lazy"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
               <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/95 via-primary/60 to-transparent p-4 text-white">
                 <p className="font-heading text-lg font-semibold">{r.name}</p>
