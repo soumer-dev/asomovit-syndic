@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin } from "lucide-react";
-import logo from "@/assets/logo-asomovit.png";
+import logo from "@/assets/asomovit blanc.svg";
 
 export function SiteFooter() {
   return (
@@ -12,7 +12,7 @@ export function SiteFooter() {
             <Image
               src={logo}
               alt="ASOMOVIT SYNDIC"
-              className="h-12 w-auto rounded-md bg-white p-1"
+              className="h-[100px] w-auto rounded-md p-1"
               height={48}
             />
             <div>
@@ -27,21 +27,24 @@ export function SiteFooter() {
           </p>
           <div className="mt-5 flex gap-3">
             <a
-              href="#"
+              href="https://web.facebook.com/profile.php?id=61583660979278"
+              target="_blank"
               aria-label="Facebook"
               className="rounded-full bg-white/10 p-2 transition hover:bg-white/20"
             >
               <Facebook className="h-4 w-4" />
             </a>
             <a
-              href="#"
+              href="https://www.instagram.com/syndic.asomovit/"
+              target="_blank"
               aria-label="Instagram"
               className="rounded-full bg-white/10 p-2 transition hover:bg-white/20"
             >
               <Instagram className="h-4 w-4" />
             </a>
             <a
-              href="#"
+              href="https://www.linkedin.com/company/asomovit-syndic/"
+              target="_blank"
               aria-label="LinkedIn"
               className="rounded-full bg-white/10 p-2 transition hover:bg-white/20"
             >
@@ -97,8 +100,14 @@ export function SiteFooter() {
               </a>
             </li>
             <li className="flex items-start gap-2">
-              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-              <span>Marrakech, Maroc</span>
+              <Mail className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+              <a
+                href="https://www.google.com/maps/place/ASOMOVIT+MULTISERVICES/data=!4m2!3m1!1s0x0:0x225b6db315207c08?sa=X&ved=1t:2428&ictx=111"
+                target="_blank"
+                className="break-all hover:text-accent"
+              >
+                Allal El Fassi, Marrakech
+              </a>
             </li>
           </ul>
         </div>
@@ -106,7 +115,18 @@ export function SiteFooter() {
 
       <div className="border-t border-white/10">
         <div className="container mx-auto flex flex-col items-center justify-between gap-2 px-4 py-5 text-xs opacity-75 sm:flex-row">
-          <p>© 2025 ASOMOVIT SYNDIC. Tous droits réservés.</p>
+          <p>
+            © {new Date().getFullYear()} ASOMOVIT MULTISERVICES, appuyé par{" "}
+            <a
+              href="https://monarkit.net"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold"
+            >
+              MONARK IT
+            </a>
+            . Tous droits réservés.
+          </p>
           <p className="flex gap-4">
             <a href="#" className="hover:text-accent">
               Mentions légales

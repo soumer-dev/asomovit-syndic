@@ -30,8 +30,8 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-ring-offset-background: var(--background);
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-heading: "Poppins", "Inter", system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Plus Jakarta Sans","Inter",ui-sans-serif,system-ui,sans-serif;
 }
 
 :root {
@@ -52,7 +52,7 @@
   --muted: oklch(0.97 0.01 250);
   --muted-foreground: oklch(0.5 0.03 257);
   /* Accent = orange du logo */
-  --accent: oklch(0.68 0.19 45);
+  --accent: oklch(0.7459 0.1391 51.54);
   --accent-foreground: oklch(1 0 0);
   --destructive: oklch(0.6 0.22 27);
   --destructive-foreground: oklch(0.99 0 0);
@@ -74,8 +74,8 @@
 
   --gradient-hero: linear-gradient(
     135deg,
-    color-mix(in oklab, var(--brand-blue-deep) 70%, transparent) 0%,
-    color-mix(in oklab, var(--brand-blue) 49%, transparent) 100%
+    color-mix(in oklab, var(--brand-blue-deep) 30%, transparent) 0%,
+    color-mix(in oklab, var(--brand-blue) 10%, transparent) 100%
   );
   --gradient-cta: linear-gradient(135deg, var(--brand-orange) 0%, var(--brand-orange-soft) 100%);
   --shadow-soft: 0 8px 30px -12px color-mix(in oklab, var(--brand-blue) 10%, transparent);
@@ -101,6 +101,38 @@
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.78 0.16 70);
 }
+
+/* ── Hero animations ─────────────────────────────────────────────────────── */
+
+@keyframes hero-zoom {
+  from { transform: scale(1);   }
+  to   { transform: scale(1.08); }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slow Ken-Burns zoom on the hero background image */
+.hero-bg-anim {
+  animation: hero-zoom 12s ease-out forwards;
+  will-change: transform;
+}
+
+/* Fade-up reveal — add .in-view via JS or just keep it always-on for SSR */
+.reveal {
+  opacity: 0;
+  animation: reveal-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
 
 @layer base {
   * {

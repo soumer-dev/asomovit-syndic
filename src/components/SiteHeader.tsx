@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
-import logo from "@/assets/logo-asomovit.png";
+import logo from "@/assets/logo-asomovit.svg";
 import { cn } from "@/lib/utils";
 
 const NAV = [
@@ -23,7 +23,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/85 backdrop-blur supports-[backdrop-filter]:bg-background/70">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:h-20">
         <Link href="/" className="flex items-center gap-3" aria-label="ASOMOVIT SYNDIC – accueil">
-          <Image src={logo} alt="ASOMOVIT SYNDIC" className="h-14 w-auto md:h-20" height={80} />
+          <Image src={logo} alt="ASOMOVIT SYNDIC" className="h-14 w-auto md:h-[70px]" height={80} />
           <span className="hidden font-heading text-lg font-bold leading-tight text-primary sm:inline-flex flex-col" />
         </Link>
 

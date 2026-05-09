@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
+import heroBg from "@/assets/hero-bg.webp";
 import { FileText, Wallet, Vote, Hammer, Scale, Sparkles, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -79,7 +81,16 @@ const services = [
 export default function ServicesPage() {
   return (
     <div>
-      <section className="bg-primary py-20 text-primary-foreground md:py-28">
+      <section className="relative isolate overflow-hidden py-20 text-primary-foreground md:py-28">
+        <Image
+          src={heroBg}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="absolute inset-0 -z-10 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
         <div className="container mx-auto px-4">
           <p className="text-sm font-semibold uppercase tracking-wider text-accent">Nos services</p>
           <h1 className="mt-3 max-w-3xl font-heading text-4xl font-bold leading-tight md:text-5xl">

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import Image from "next/image";
+import heroBg from "@/assets/hero-bg.webp";
 import { ContactForm } from "./ContactForm";
 
 export const metadata: Metadata = {
@@ -15,7 +17,16 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div>
-      <section className="bg-primary py-20 text-primary-foreground md:py-24">
+      <section className="relative isolate overflow-hidden py-20 text-primary-foreground md:py-28">
+        <Image
+          src={heroBg}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="absolute inset-0 -z-10 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
         <div className="container mx-auto px-4">
           <p className="text-sm font-semibold uppercase tracking-wider text-accent">
             Contact &amp; Devis
@@ -67,7 +78,7 @@ export default function ContactPage() {
         <div className="overflow-hidden rounded-2xl shadow-[var(--shadow-card)]">
           <iframe
             title="ASOMOVIT SYNDIC – Marrakech"
-            src="https://www.google.com/maps?q=Marrakech,Morocco&output=embed"
+            src="https://www.google.com/maps?q=ASOMOVITMULTISERVICES&output=embed"
             width="100%"
             height="420"
             loading="lazy"

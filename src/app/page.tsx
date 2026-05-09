@@ -2,6 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
   ShieldCheck,
   Clock,
   ClipboardList,
@@ -20,7 +26,7 @@ import {
   Quote,
 } from "lucide-react";
 
-import heroImg from "@/assets/hero-marrakech.jpg";
+import heroImg from "@/assets/hero-marrakech.webp";
 import resAppel from "@/assets/residence-appel-garden.jpg";
 import resOliviers from "@/assets/residence-riad-oliviers.jpg";
 import resYasmina from "@/assets/residence-yasmina.jpg";
@@ -254,7 +260,7 @@ export default function HomePage() {
         <Image
           src={heroImg}
           alt="Résidence à Marrakech gérée par ASOMOVIT SYNDIC"
-          className="absolute inset-0 -z-10 h-full w-full object-cover"
+          className="hero-bg-anim absolute inset-0 -z-10 h-full w-full object-cover"
           fill
           priority
           sizes="100vw"
@@ -262,15 +268,24 @@ export default function HomePage() {
         <div className="absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
         <div className="container mx-auto px-4 py-24 md:py-36 lg:py-44">
           <div className="max-w-3xl text-white">
-            <h1 className="font-heading text-4xl font-bold leading-tight md:text-6xl">
+            <h1
+              className="reveal font-heading text-4xl font-bold leading-tight md:text-6xl"
+              style={{ animationDelay: "0ms" }}
+            >
               Syndic de copropriété à{" "}
               <span className="text-white">Marrakech</span> — gestion transparente &amp; sereine
             </h1>
-            <p className="mt-5 max-w-2xl text-lg text-white/90 md:text-xl">
+            <p
+              className="reveal mt-5 max-w-2xl text-lg text-white/90 md:text-xl"
+              style={{ animationDelay: "150ms" }}
+            >
               ASOMOVIT SYNDIC accompagne les copropriétés de Marrakech : gestion administrative,
               financière, technique et juridique, en stricte conformité avec la loi 18-00 / 106-12.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div
+              className="reveal mt-8 flex flex-wrap gap-3"
+              style={{ animationDelay: "300ms" }}
+            >
               <Link
                 href="/contact"
                 className="inline-flex h-12 items-center justify-center rounded-md bg-accent px-6 text-sm font-semibold text-accent-foreground transition hover:brightness-105"
@@ -501,14 +516,22 @@ export default function HomePage() {
               Tout savoir sur votre syndic à Marrakech
             </h2>
           </div>
-          <dl className="mt-10 divide-y divide-border rounded-2xl border border-border bg-card">
-            {faqs.map((f) => (
-              <div key={f.q} className="p-6">
-                <dt className="font-heading text-lg font-semibold text-foreground">{f.q}</dt>
-                <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.a}</dd>
-              </div>
+          <Accordion type="single" collapsible className="mt-10 rounded-2xl border border-border bg-card">
+            {faqs.map((f, i) => (
+              <AccordionItem
+                key={f.q}
+                value={`faq-${i}`}
+                className="px-6 last:border-b-0"
+              >
+                <AccordionTrigger className="font-heading text-base font-semibold text-foreground hover:no-underline hover:text-accent py-5">
+                  {f.q}
+                </AccordionTrigger>
+                <AccordionContent className="text-sm leading-relaxed text-muted-foreground pb-5">
+                  {f.a}
+                </AccordionContent>
+              </AccordionItem>
             ))}
-          </dl>
+          </Accordion>
         </div>
       </section>
 
@@ -528,7 +551,10 @@ export default function HomePage() {
           </p>
           <Link
             href="/contact"
-            className="mt-8 inline-flex h-12 items-center justify-center rounded-md bg-primary px-7 text-sm font-semibold text-primary-foreground shadow-lg transition hover:brightness-110"
+            className="mt-8 inline-flex h-12 items-center justify-center rounded-md bg-accent px-6 text-sm font-semibold text-accent-foreground transition hover:brightness-105"
+            style={{
+              boxShadow:"0 4px 14px -4px color-mix(in oklab, var(--brand-orange) 25%, transparent)",
+            }}
           >
             Demander un devis gratuit <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
