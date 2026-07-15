@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter, Poppins } from "next/font/google";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -103,6 +104,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </div>
         {/* GTM loaded after page content — lazyOnload fires on idle, off critical path */}
         <GoogleTagManagerScript />
+        <Script id="zsiq-init" strategy="afterInteractive">
+          {`window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}`}
+        </Script>
+        <Script
+          id="zsiqscript"
+          src="https://salesiq.zohopublic.com/widget?wc=siq7897a3057af266c9d46b3296a68ee431cf0bc3247766b1f0d234f27cd908b492"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
